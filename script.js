@@ -28,17 +28,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const icon = menuToggle.querySelector('i');
             if (navLinks.classList.contains('active')) {
                 icon.setAttribute('data-lucide', 'x');
+                document.body.style.overflow = 'hidden'; // Blokuje przewijanie strony pod menu
             } else {
                 icon.setAttribute('data-lucide', 'menu');
+                document.body.style.overflow = 'auto'; // Przywraca przewijanie
             }
             // Ponowna inicjalizacja, aby Lucide podmieniło ikonę w DOM
             lucide.createIcons();
         });
 
-        // Zamykanie menu po kliknięciu w dowolny link (dla lepszego UX)
+        // Zamykanie menu po kliknięciu w dowolny link
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
+                document.body.style.overflow = 'auto';
                 const icon = menuToggle.querySelector('i');
                 icon.setAttribute('data-lucide', 'menu');
                 lucide.createIcons();
@@ -70,7 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (entry.target.classList.contains('counter')) {
                     startCounter(entry.target);
                 }
-                // Po animacji można przestać obserwować dany element
                 observer.unobserve(entry.target);
             }
         });
@@ -82,8 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function startCounter(el) {
         const target = +el.getAttribute('data-target');
         let count = 0;
-        const duration = 2000; // 2 sekundy animacji
-        const increment = target / (duration / 16); // ~60fps
+        const duration = 2000; 
+        const increment = target / (duration / 16);
 
         const updateCount = () => {
             count += increment;
@@ -91,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.innerText = Math.ceil(count);
                 requestAnimationFrame(updateCount);
             } else {
-                el.innerText = target + (target === 11 || target === 8 ? '+' : '');
+                el.innerText = target + (target >= 10 ? '+' : '');
             }
         };
 
@@ -102,14 +104,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
-            
-            // Ignoruj puste linki
             if (href === '#') return;
 
             const target = document.querySelector(href);
             if (target) {
                 e.preventDefault();
-                const offset = 80; // wysokość przyklejonego menu
+                const offset = 80; 
                 const bodyRect = document.body.getBoundingClientRect().top;
                 const elementRect = target.getBoundingClientRect().top;
                 const elementPosition = elementRect - bodyRect;

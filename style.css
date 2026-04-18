@@ -341,7 +341,14 @@ footer {
     font-size: 35px;
 }
 
+/* --- POPRAWKI GLOBALNE DLA MOBILNYCH --- */
+html, body {
+    overflow-x: hidden; /* Blokuje przesuwanie strony na boki */
+    width: 100%;
+}
+
 @media (max-width: 768px) {
+    /* 1. Naprawa menu mobilnego */
     .menu-toggle {
         display: block;
         z-index: 1001;
@@ -352,44 +359,70 @@ footer {
         display: flex;
         flex-direction: column;
         align-items: center;
-        position: absolute;
-        top: 80px;
-        left: 0;
+        justify-content: center;
+        position: fixed; /* Zmieniono na fixed dla lepszej stabilności */
+        top: 0;
+        right: -100%; /* Ukryte poza ekranem */
         width: 100%;
-        background-color: rgba(15, 15, 15, 0.98); /* Bardzo ciemne tło */
-        backdrop-filter: blur(10px);
-        
-        /* Kontrola odstępów */
-        gap: 10px; 
-        padding: 30px 0 !important;
-        
-        max-height: 0;
-        overflow: hidden;
-        opacity: 0;
-        transition: all 0.5s ease-in-out;
-        border-bottom: 1px solid var(--accent);
+        height: 100vh;
+        background-color: rgba(10, 10, 10, 0.98);
+        backdrop-filter: blur(15px);
+        transition: 0.5s ease-in-out;
+        gap: 20px;
+        z-index: 1000;
     }
 
     .nav-links.active {
-        max-height: 600px;
+        right: 0; /* Pokazuje menu */
         opacity: 1;
     }
 
-    .nav-links a {
-        padding: 10px; /* To jest klucz do dużych odstępów */
-        font-size: 1rem;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        color: white;
-        text-decoration: none;
-        width: 100%;
-        display: block;
+    /* 2. Statystyki - jedna pod drugą */
+    .stats {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 40px 0;
     }
 
-    .social-icons {
-        margin-top: 30px; /* Odstęp ikon social media od ostatniego linku */
-        display: flex;
-        justify-content: center;
-        gap: 30px;
+    /* 3. Sekcja lokalizacji - mapa nad tekstem */
+    .location-container {
+        grid-template-columns: 1fr;
+    }
+
+    .map-wrapper iframe {
+        height: 300px;
+    }
+
+    .location-info {
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    /* 4. STOPKA - Naprawa niewidocznych godzin otwarcia */
+    .footer-content {
+        grid-template-columns: 1fr; /* Wszystko w jednej kolumnie */
+        gap: 40px;
+        text-align: center;
+    }
+
+    .footer-info, .footer-logo, .footer-hours {
+        width: 100%;
+    }
+
+    /* 5. Hero - mniejszy tekst na telefony */
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
+
+    .hero-btns {
+        flex-direction: column;
+        gap: 15px;
+        padding: 0 20px;
+    }
+
+    /* 6. Usługi - dopasowanie */
+    .services-grid {
+        grid-template-columns: 1fr;
+        padding: 20px;
     }
 }
