@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barber</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="logo.png" alt="logo"> </a>
+
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    
+        <div class="links" id="nav-links">
+            <a href="index.html">Strona główna</a>
+            <a href="#">Oferta</a>
+            <a href="#">Kontakt</a>
+            <a href="#">O nas</a>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/juliaa.kabaja/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61587561043909" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <button class="prev" id="prevBtn"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="next" id="nextBtn"><i class="fa-solid fa-chevron-right"></i></button>
+        
+            <div class="video active">
+                <video muted autoplay playsinline preload="auto">
+                    <source src="video/video1.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="video">
+                    <video muted autoplay playsinline preload="auto">
+                        <source src="video/video2.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+    
+    <script src="script.js"></script>
+</body>
+</html>

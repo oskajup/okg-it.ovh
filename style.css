@@ -1,0 +1,253 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+}
+
+
+nav {
+    color: black;
+    background-color: #f1f1f1;
+    height: 80px;
+    display: flex;
+    padding: 0 5%;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1000;
+}
+
+.logo img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    background-color: #232323;
+    display: block;
+    object-fit: contain;
+}
+
+
+.links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.links a {
+    text-decoration: none;
+    color: black;
+    position: relative;
+    padding: 5px 0;
+    font-size: 18px;
+    transition: color 0.3s;
+
+}
+
+.links a:hover {
+    color: #787878;
+}
+
+.links a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #000000;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+}
+
+.links a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-left: 10px;
+}
+
+.social-icons a {
+    padding: 0;
+}
+
+.social-icons a::after {
+    display: none;
+}
+
+.social-icons i {
+    font-size: 22px;
+    color: black;
+    transition: color 0.3s;
+}
+
+.social-icons i:hover {
+    color: #787878;
+}
+
+
+.menu-toggle {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 320px; /* Stała szerokość slidera */
+    margin: 50px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 570px; /* Dopasuj do wysokości swoich filmów (9:16) */}
+
+.video {
+    display: block;
+    opacity: 0;
+    position: absolute; /* Wszystkie leżą w tym samym miejscu */
+    top: 0;
+    left: 0;           /* Zmieniamy z 50% na 0, bo container już centruje */
+    width: 100%;       /* Szerokość bierze z max-width kontenera */
+    aspect-ratio: 9 / 16;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: opacity 0.4s ease-in-out;
+    border: 4px solid #1a1a1a;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    pointer-events: none;
+    backface-visibility: hidden; /* Dodaj to dla płynności */
+}
+
+.video.active {
+    opacity: 1;
+    position: relative; /* Tylko ten jeden "rozpycha" kontener, by strzałki były w dobrym miejscu */
+    pointer-events: auto;
+    z-index: 5;
+}
+
+.video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Stylizacja strzałek */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+
+
+.prev:hover, .next:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.prev { left: -60px; }
+.next { right: -60px; }
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+        z-index: 1001;
+    }
+
+    .links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+        position: absolute;
+        top: 90px;
+        left: 50%;
+        transform: translateX(-50%);
+        
+        width: 80%;
+        background-color: #f1f1f1;
+        gap: 0;
+        
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: all 0.5s ease-in-out;
+        
+        box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        border-radius: 10px;
+    }
+
+    .links.active {
+        max-height: 600px;
+        opacity: 1;
+        padding: 20px 0;
+    }
+
+    .links a {
+        padding: 15px 20px;
+        width: 100%;
+        text-align: center;
+        display: block;
+        transition: 0.3s;
+    }
+
+
+    .links a::after {
+        width: 20%;
+        left: 40%;
+        background-color: #000;
+    }
+
+    .social-icons {
+        margin: 20px 0 10px 0;
+        justify-content: center;
+        width: 100%;
+        display: flex;
+        gap: 20px;
+    }
+
+    .container {
+            /* Usuwamy flex-direction: column, bo filmy mają być jeden na drugim */
+            width: 90%; 
+            max-width: 300px; /* Nieco mniejszy na telefonach */
+            min-height: auto;
+            padding: 0;
+            margin: 30px auto;
+        }
+
+        .video {
+            width: 100%;
+            max-width: 100%;
+            flex: none; /* Usuwamy flexy, które psuły rozmiar */
+        }
+
+    .prev { left: -50px; } /* Strzałki nieco bliżej, żeby nie uciekły poza ekran */
+    .next { right: -50px; }    
+}
