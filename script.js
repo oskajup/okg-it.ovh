@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Inicjalizacja ikon Lucide (na starcie)
     lucide.createIcons();
 
-    // 2. Logika Loadera (Ekran ładowania)
     const loader = document.getElementById('loader');
     if (loader) {
         window.addEventListener('load', () => {
@@ -15,29 +13,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Menu Mobilne (Hamburger)
     const menuToggle = document.getElementById('mobile-menu');
     const navLinks = document.getElementById('nav-links');
 
     if (menuToggle && navLinks) {
         menuToggle.addEventListener('click', () => {
-            // Przełączanie klasy active
             navLinks.classList.toggle('active');
             
-            // Zmiana ikony menu na "X" i z powrotem
             const icon = menuToggle.querySelector('i');
             if (navLinks.classList.contains('active')) {
                 icon.setAttribute('data-lucide', 'x');
-                document.body.style.overflow = 'hidden'; // Blokuje przewijanie strony pod menu
+                document.body.style.overflow = 'hidden';
             } else {
                 icon.setAttribute('data-lucide', 'menu');
-                document.body.style.overflow = 'auto'; // Przywraca przewijanie
+                document.body.style.overflow = 'auto';
             }
-            // Ponowna inicjalizacja, aby Lucide podmieniło ikonę w DOM
             lucide.createIcons();
         });
 
-        // Zamykanie menu po kliknięciu w dowolny link
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
@@ -49,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. Efekt Navbaru przy skrolowaniu (tło po przewinięciu)
     const header = document.querySelector('header');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -59,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 5. Reveal on Scroll (Animacje pojawiania się elementów)
     const observerOptions = {
         threshold: 0.15
     };
@@ -69,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
                 
-                // Jeśli element to licznik, uruchom odliczanie
                 if (entry.target.classList.contains('counter')) {
                     startCounter(entry.target);
                 }
@@ -80,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.reveal, .counter').forEach(el => observer.observe(el));
 
-    // 6. Logika Liczników (Statystyki)
     function startCounter(el) {
         const target = +el.getAttribute('data-target');
         let count = 0;
@@ -100,7 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCount();
     }
 
-    // 7. Smooth Scroll (Płynne przewijanie do sekcji)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');

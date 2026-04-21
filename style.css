@@ -1,6 +1,5 @@
-/* Zmienne i Reset */
 :root {
-    --accent: #d4af37; /* Gold */
+    --accent: #d4af37;
     --bg-dark: #0a0a0a;
     --bg-card: #151515;
     --text-main: #ffffff;
@@ -26,7 +25,6 @@ h1, h2, .logo {
     font-family: 'Cinzel', serif;
 }
 
-/* Loader */
 .loader {
     position: fixed;
     inset: 0;
@@ -50,7 +48,6 @@ h1, h2, .logo {
     to { opacity: 1; }
 }
 
-/* Nawigacja Premium */
 header {
     position: fixed;
     width: 100%;
@@ -117,7 +114,6 @@ header.scrolled {
     color: var(--bg-dark) !important;
 }
 
-/* Hero Section */
 .hero {
     height: 100vh;
     background: linear-gradient(to bottom, rgba(0,0,0,0.4), var(--bg-dark)),
@@ -145,7 +141,7 @@ header.scrolled {
 
 .social-icons i {
     font-size: 22px;
-    color: var(--accent) !important; /* Zmieniono z black na złoty */
+    color: var(--accent) !important;
     transition: color 0.3s;
 }
 
@@ -153,9 +149,8 @@ header.scrolled {
     color: white !important;
 }
 
-/* 2. Naprawa przycisku hamburgera (żeby był widoczny) */
 .menu-toggle {
-    display: none; /* Domyślnie ukryty na desktopie */
+    display: none;
     cursor: pointer;
     color: var(--text-main);
 }
@@ -195,7 +190,6 @@ header.scrolled {
 .btn-outline { border: 1px solid white; color: white; }
 .btn:hover { transform: translateY(-5px); opacity: 0.9; }
 
-/* Stats Section */
 .stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -213,7 +207,6 @@ header.scrolled {
     color: var(--accent);
 }
 
-/* Services */
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -252,7 +245,6 @@ header.scrolled {
     color: var(--accent);
 }
 
-/* Reveal Animation Class */
 .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -264,7 +256,6 @@ header.scrolled {
     transform: translateY(0);
 }
 
-/* Footer */
 footer {
     padding: 80px 40px 20px;
     background: #050505;
@@ -296,7 +287,6 @@ footer {
     color: var(--text-dim);
 }
 
-/* Mapa */
 .location-section {
     position: relative;
     padding-bottom: 100px;
@@ -312,7 +302,7 @@ footer {
 }
 
 .map-wrapper {
-    filter: grayscale(1) invert(0.9) contrast(1.2); /* Magiczny filtr "Dark Map" */
+    filter: grayscale(1) invert(0.9) contrast(1.2);
 }
 
 .location-info {
@@ -341,14 +331,12 @@ footer {
     font-size: 35px;
 }
 
-/* --- POPRAWKI GLOBALNE DLA MOBILNYCH --- */
 html, body {
-    overflow-x: hidden; /* Blokuje przesuwanie strony na boki */
+    overflow-x: hidden;
     width: 100%;
 }
 
 @media (max-width: 768px) {
-    /* 1. Naprawa menu mobilnego */
     .menu-toggle {
         display: block;
         z-index: 1001;
@@ -360,9 +348,9 @@ html, body {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        position: fixed; /* Zmieniono na fixed dla lepszej stabilności */
+        position: fixed;
         top: 0;
-        right: -100%; /* Ukryte poza ekranem */
+        right: -100%;
         width: 100%;
         height: 100vh;
         background-color: rgba(10, 10, 10, 0.98);
@@ -373,18 +361,16 @@ html, body {
     }
 
     .nav-links.active {
-        right: 0; /* Pokazuje menu */
+        right: 0;
         opacity: 1;
     }
 
-    /* 2. Statystyki - jedna pod drugą */
     .stats {
         grid-template-columns: 1fr;
         gap: 40px;
         padding: 40px 0;
     }
 
-    /* 3. Sekcja lokalizacji - mapa nad tekstem */
     .location-container {
         grid-template-columns: 1fr;
     }
@@ -398,9 +384,8 @@ html, body {
         text-align: center;
     }
 
-    /* 4. STOPKA - Naprawa niewidocznych godzin otwarcia */
     .footer-content {
-        grid-template-columns: 1fr; /* Wszystko w jednej kolumnie */
+        grid-template-columns: 1fr;
         gap: 40px;
         text-align: center;
     }
@@ -409,7 +394,6 @@ html, body {
         width: 100%;
     }
 
-    /* 5. Hero - mniejszy tekst na telefony */
     .hero-content h1 {
         font-size: 2.8rem;
     }
@@ -420,7 +404,6 @@ html, body {
         padding: 0 20px;
     }
 
-    /* 6. Usługi - dopasowanie */
     .services-grid {
         grid-template-columns: 1fr;
         padding: 20px;
